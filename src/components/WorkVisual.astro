@@ -1,0 +1,31 @@
+---
+import type { Work } from '@/types/work';
+
+interface Props {
+  work: Work;
+}
+
+const { work } = Astro.props;
+---
+
+<figure class:list={['work-visual', `work-visual--${work.visual}`]}>
+  {work.cover ? (
+    <img src={work.cover.url} alt={work.coverAlt} width={work.cover.width} height={work.cover.height} loading="lazy" />
+  ) : work.visual === 'corporate' ? (
+    <div class="mock-laptop" role="img" aria-label={work.coverAlt}>
+      <div><small>FOSTER WORKS</small><strong>Connecting<br />the dots.</strong><span></span></div>
+    </div>
+  ) : work.visual === 'dashboard' ? (
+    <div class="mock-dashboard" role="img" aria-label={work.coverAlt}>
+      <aside></aside>
+      <div class="mock-dashboard__body">
+        <div class="mock-dashboard__stats"><i></i><i></i><i></i></div>
+        <div class="mock-dashboard__chart"><span></span></div>
+      </div>
+    </div>
+  ) : (
+    <div class="mock-brand" role="img" aria-label={work.coverAlt}>
+      <div><strong>Be closer<br />to nature.</strong><i></i><i></i><i></i><i></i></div>
+    </div>
+  )}
+</figure>

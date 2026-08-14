@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import WorkVisual from '@/components/WorkVisual.astro';
+import { getWorkBySlug, getWorks } from '@/lib/microcms';
+import type { Work } from '@/types/work';
+
+export async function getStaticPaths() {
+  const works = await getWorks();
+  return works.map((work) => ({ params: { slug: work.slug }, props: { work } }));
+}
+
+interface Props { work: Work }
+const { work: staticWork } = Astro.props;
+const work = (await getWorkBySlug(staticWork.slug)) ?? staticWork;
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={`${work.seoTitle ?? work.title} | FOSTER`} description={work.seoDescription ?? work.summary}>
+  <main id="main-content" class="case-page">
+    <article>
+      <header class="case-hero shell">
+        <div>
+          <p class="case-hero__meta">{work.year} / {work.categories.join(' / ')}</p>
+          <h1>{work.title}</h1>
+          <p class="case-hero__summary">{work.summary}</p>
+        </div>
+        <dl class="case-hero__facts">
+          {work.client && <div><dt>CLIENT</dt><dd>{work.client}</dd></div>}
+          <div><dt>ROLE</dt><dd>{work.role.join(' / ')}</dd></div>
+          <div><dt>YEAR</dt><dd>{work.year}</dd></div>
+        </dl>
+      </header>
+
+      <div class="case-cover shell"><WorkVisual work={work} /></div>
+
+      <div class="case-content shell">
+        <section><p class="case-content__index">01 / CHALLENGE</p><h2>向き合った課題</h2><p>{work.challenge}</p></section>
+        <section><p class="case-content__index">02 / APPROACH</p><h2>設計とアプローチ</h2><p>{work.approach}</p></section>
+        <section><p class="case-content__index">03 / RESULT</p><h2>生まれた変化</h2><p>{work.result}</p></section>
+        <aside><p>TOOLS / TECHNOLOGIES</p><ul>{work.technologies.map((technology) => <li>{technology}</li>)}</ul></aside>
+      </div>
+      <div class="case-back shell"><a class="outline-link" href={`${base}works/`}><span>←</span> BACK TO WORKS</a></div>
+    </article>
+  </main>
+</BaseLayout>

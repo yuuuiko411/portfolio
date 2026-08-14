@@ -1,0 +1,21 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner shell">
+    <div>
+      <a class="site-footer__logo" href={base}>FOSTER</a>
+      <p>Design, Code &amp; Systems.</p>
+    </div>
+    <nav aria-label="フッターナビゲーション">
+      <ul class="site-footer__nav">
+        <li><a href={`${base}#concept`}>CONCEPT</a></li>
+        <li><a href={`${base}#strengths`}>STRENGTHS</a></li>
+        <li><a href={`${base}works/`}>WORKS</a></li>
+        <li><a href={`${base}#contact`}>CONTACT</a></li>
+      </ul>
+    </nav>
+    <small>&copy; 2026 FOSTER</small>
+  </div>
+</footer>

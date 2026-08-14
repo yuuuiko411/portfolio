@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import DeskVisual from '@/components/DeskVisual.astro';
+import WorkCard from '@/components/WorkCard.astro';
+import { getWorks } from '@/lib/microcms';
+
+const featuredWorks = await getWorks({ featuredOnly: true, limit: 3 });
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout>
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="hero__kicker"><span>DESIGN / CODE / SYSTEMS</span></p>
+          <h1 class="hero__title" id="hero-title">FOSTER</h1>
+          <p class="hero__tagline">育つための、<br />仕組みをつくる。</p>
+          <p class="hero__lead" lang="en">Design and technology for ideas that <em>grow.</em></p>
+          <p class="hero__description">複雑な情報やアイデアを整え、伝わる体験と、使いながら育つデジタルの仕組みへ。</p>
+          <ul class="tag-list" aria-label="サービス領域">
+            <li>Web Design</li><li>UI / UX</li><li>Frontend</li><li>Information Design</li>
+          </ul>
+          <a class="arrow-link" href="#concept">DISCOVER FOSTER <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero__visual"><DeskVisual /></div>
+      </div>
+    </section>
+
+    <section class="concept section" id="concept" aria-labelledby="concept-title">
+      <div class="shell">
+        <header class="section-title">
+          <p class="section-title__number">01</p>
+          <h2 class="section-title__text" id="concept-title">CONCEPT</h2>
+        </header>
+        <div class="concept__layout">
+          <div class="concept__copy">
+            <p class="concept__eyebrow">IDEAS NEED MORE THAN A SHAPE.</p>
+            <h3 class="concept__heading">アイデアを、<br /><em>育つ仕組み</em>へ。</h3>
+            <p>FOSTERは、見た目をつくるだけのデザインサービスではありません。</p>
+            <p>情報を整理し、体験を設計し、実装して、公開後も改善する。デザインとテクノロジーを横断しながら、アイデアが自ら育っていける土台をつくります。</p>
+          </div>
+          <div class="concept__wordmark" aria-label="FORESTからFOSTERへ">
+            <p class="concept__word">FOR<span>E</span>ST</p>
+            <span class="concept__arrow" aria-hidden="true">↓</span>
+            <p class="concept__word">FO<span>S</span>TER</p>
+            <p class="concept__note">森のように、異なる要素がつながり、<br />少しずつ環境を育てていく。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="strengths section" id="strengths" aria-labelledby="strengths-title">
+      <div class="shell">
+        <header class="section-title section-title--center">
+          <p class="section-title__number">02</p>
+          <h2 class="section-title__text" id="strengths-title">WHAT FOSTER DOES</h2>
+          <p class="section-title__lead">整えて、設計して、形にして、育てる。</p>
+        </header>
+        <ol class="strengths__list">
+          <li class="strength-card"><span class="strength-card__number">01</span><span class="strength-card__icon">⌁</span><h3>整理する</h3><small>ORGANIZE</small><p>複雑な情報と課題をほどき、進むべき方向を明確にします。</p></li>
+          <li class="strength-card"><span class="strength-card__number">02</span><span class="strength-card__icon">◇</span><h3>設計する</h3><small>DESIGN</small><p>使う人の視点から、情報構造と心地よい体験を設計します。</p></li>
+          <li class="strength-card"><span class="strength-card__number">03</span><span class="strength-card__icon">□</span><h3>形にする</h3><small>BUILD</small><p>デザインと実装を往復し、実際に使えるプロダクトへ。</p></li>
+          <li class="strength-card"><span class="strength-card__number">04</span><span class="strength-card__icon">＋</span><h3>つなぐ</h3><small>CONNECT</small><p>チームとユーザー、事業と技術を、伝わる形でつなぎます。</p></li>
+          <li class="strength-card"><span class="strength-card__number">05</span><span class="strength-card__icon">↗</span><h3>育てる</h3><small>FOSTER</small><p>公開をゴールにせず、学びながら継続的に改善します。</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="capabilities section" aria-labelledby="capabilities-title">
+      <div class="shell capabilities__layout">
+        <header class="section-title capabilities__title">
+          <p class="section-title__number">03</p>
+          <h2 class="section-title__text" id="capabilities-title">CAPABILITIES</h2>
+          <p class="section-title__lead">構想から運用まで、<br />ひと続きで支える。</p>
+        </header>
+        <div class="capabilities__matrix">
+          <article class="capability"><p>A</p><h3>Design</h3><ul><li>Web Design</li><li>UI / UX Design</li><li>Visual Identity</li><li>Design System</li></ul></article>
+          <article class="capability"><p>B</p><h3>Development</h3><ul><li>HTML / CSS</li><li>JavaScript</li><li>Astro / React</li><li>CMS Integration</li></ul></article>
+          <article class="capability"><p>C</p><h3>Planning</h3><ul><li>Requirements</li><li>Information Architecture</li><li>Content Design</li><li>Workflow Design</li></ul></article>
+        </div>
+        <aside class="promise">
+          <p class="promise__label">FOSTER'S PROMISE</p>
+          <p class="promise__copy">わかりやすさを、<br />成長の力に。</p>
+          <p>専門用語に頼らず、判断の背景まで共有します。納品物だけでなく、チームに知識が残るプロセスを大切にします。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="works section" id="works" aria-labelledby="works-title">
+      <div class="shell">
+        <header class="section-title section-title--split">
+          <div><p class="section-title__number">04</p><h2 class="section-title__text" id="works-title">SELECTED WORKS</h2></div>
+          <p class="section-title__lead">伝わるだけで終わらない。<br />使われ、育つ仕事を。</p>
+        </header>
+        <div class="works__grid">
+          {featuredWorks.map((work, index) => <WorkCard work={work} index={index + 1} large={index === 0} />)}
+        </div>
+        <div class="works__more"><a class="outline-link" href={`${base}works/`}>VIEW ALL WORKS <span>→</span></a></div>
+      </div>
+    </section>
+
+    <section class="approach section" id="approach" aria-labelledby="approach-title">
+      <div class="shell">
+        <header class="section-title section-title--center">
+          <p class="section-title__number">05</p><h2 class="section-title__text" id="approach-title">WORK APPROACH</h2>
+          <p class="section-title__lead">つくる前から、育てたあとまで。</p>
+        </header>
+        <div class="approach__layout">
+          <ol class="process-list">
+            <li><span>01</span><div><h3>ヒアリング・課題整理</h3><p>目的や背景を丁寧に聞き、課題の輪郭と優先順位を揃えます。</p></div></li>
+            <li><span>02</span><div><h3>設計・プロトタイピング</h3><p>情報構造と体験を設計し、早い段階で触れる形にします。</p></div></li>
+            <li><span>03</span><div><h3>デザイン・実装</h3><p>見た目と動きを分けずに考え、使いやすい体験をつくります。</p></div></li>
+            <li><span>04</span><div><h3>検証・改善</h3><p>公開後の反応から学び、より良い形へ継続的に育てます。</p></div></li>
+          </ol>
+          <div class="value-card">
+            <p class="value-card__script">Our Values</p><h3>一緒に考え、<br />仕組みとして残す。</h3>
+            <ul>
+              <li><span>✓</span><div><strong>わかりやすさを最優先に</strong><p>専門領域外の人にも伝わる表現を選びます。</p></div></li>
+              <li><span>✓</span><div><strong>チームで成果を出す</strong><p>対話と共有を重ね、判断できるチームを育てます。</p></div></li>
+              <li><span>✓</span><div><strong>学び、成長し続ける</strong><p>新しい技術や知識を、価値につなげます。</p></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact__pattern"></div>
+      <div class="contact__inner shell">
+        <div><p class="contact__eyebrow">LET'S FOSTER YOUR IDEA.</p><h2 id="contact-title">育てたいアイデアは、<br />ありますか？</h2><p>まだ言葉になっていなくても大丈夫です。<br />一緒に整理するところから始めましょう。</p></div>
+        <a class="contact__button" href="mailto:hello@example.com">お問い合わせはこちら <span>→</span></a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

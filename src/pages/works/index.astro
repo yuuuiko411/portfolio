@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import WorkCard from '@/components/WorkCard.astro';
+import { getWorks } from '@/lib/microcms';
+
+const works = await getWorks();
+---
+
+<BaseLayout title="実績一覧 | FOSTER" description="FOSTERが手がけたWebサイト、UI/UX、ブランドデザインの実績一覧です。">
+  <main id="main-content" class="archive-page">
+    <header class="page-hero shell">
+      <p class="page-hero__eyebrow">WORKS / CASE STUDIES</p>
+      <h1>育てた仕事。</h1>
+      <p>情報を整え、体験を設計し、使われる形へ。<br />FOSTERが関わったプロジェクトをご紹介します。</p>
+    </header>
+    <section class="archive-works shell" aria-label="実績一覧">
+      <div class="archive-works__grid">
+        {works.map((work, index) => <WorkCard work={work} index={index + 1} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

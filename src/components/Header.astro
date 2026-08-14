@@ -1,0 +1,50 @@
+---
+const base = import.meta.env.BASE_URL;
+const home = base;
+---
+
+<header class="site-header">
+  <div class="site-header__inner shell">
+    <a class="brand" href={home} aria-label="FOSTER ホーム">
+      <span class="brand__name">FOSTER</span>
+      <span class="brand__descriptor">Design Service</span>
+    </a>
+
+    <button class="menu-button" type="button" aria-controls="global-nav" aria-expanded="false">
+      <span class="menu-button__label">MENU</span>
+      <span class="menu-button__lines" aria-hidden="true"></span>
+    </button>
+
+    <nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+      <ul class="global-nav__list">
+        <li><a class="global-nav__link" href={`${home}#concept`}>Concept</a></li>
+        <li><a class="global-nav__link" href={`${home}#strengths`}>Strengths</a></li>
+        <li><a class="global-nav__link" href={`${base}works/`}>Works</a></li>
+        <li><a class="global-nav__link" href={`${home}#approach`}>Approach</a></li>
+        <li><a class="global-nav__link global-nav__link--contact" href={`${home}#contact`}>Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-button');
+  const nav = document.querySelector<HTMLElement>('.global-nav');
+  const media = window.matchMedia('(max-width: 760px)');
+
+  const close = () => {
+    button?.setAttribute('aria-expanded', 'false');
+    nav?.classList.remove('is-open');
+    document.body.classList.remove('is-menu-open');
+  };
+
+  button?.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('is-open', open);
+    document.body.classList.toggle('is-menu-open', open);
+  });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+  document.addEventListener('keydown', (event) => event.key === 'Escape' && close());
+  media.addEventListener('change', (event) => !event.matches && close());
+</script>

@@ -1,0 +1,25 @@
+---
+import WorkVisual from '@/components/WorkVisual.astro';
+import type { Work } from '@/types/work';
+
+interface Props {
+  work: Work;
+  index: number;
+  large?: boolean;
+}
+
+const { work, index, large = false } = Astro.props;
+const href = `${import.meta.env.BASE_URL}works/${work.slug}/`;
+---
+
+<article class:list={['work-card', { 'work-card--large': large }]}> 
+  <a class="work-card__link" href={href} aria-label={`${work.title}の詳細を見る`}>
+    <WorkVisual work={work} />
+    <div class="work-card__meta">
+      <p><span>{String(index).padStart(2, '0')}</span> {work.categories.join(' / ')}</p>
+      <span aria-hidden="true">↗</span>
+    </div>
+    <h3 class="work-card__title">{work.title}</h3>
+    <p class="work-card__summary">{work.summary}</p>
+  </a>
+</article>
