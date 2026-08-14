@@ -22,11 +22,15 @@ jobs:
       MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
       SITE_URL: https://${{ github.repository_owner }}.github.io
       BASE_PATH: /${{ github.event.repository.name }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Install, build, and upload
         uses: withastro/action@v3
+        with:
+          node-version: 22
 
   deploy:
     needs: build
@@ -34,6 +38,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Deploy
         id: deployment
